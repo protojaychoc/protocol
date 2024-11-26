@@ -2,11 +2,11 @@ import Link from "next/link";
 
 export const Footer = () => {
     return (
-        <footer className="bg-card text-card-foreground px-10 m-10 rounded-xl">
-            <div className="block mx-auto max-w-theme-wide p-10">
-                <div className="grid grid-cols-[40%_auto] gap-20">
+        <footer className="px-6">
+            <div className="block mx-auto my-6 px-6 py-16 desktop:px-10 desktop:my-10 bg-card text-card-foreground max-w-theme-wide rounded-xl">
+                <div className="grid grid-cols-1 desktop:grid-cols-[40%_auto] gap-20">
                     <div>
-                        <div className="flex">
+                        <div className="flex flex-col md:flex-row">
                             <div className="flex-1">
                                 <h4 className="font-bold">PROTOCOL S.A.</h4>
                                 <ul className="my-2">
@@ -21,7 +21,7 @@ export const Footer = () => {
                                 </ul>                                                             
                             </div>
                         </div>
-                        <div className="flex mt-6">
+                        <div className="flex  flex-col md:flex-row mt-6">
                             <div className="flex-1">
                                 <ul className="my-2">
                                     <li className="my-2"><a href="+41(0)216237777" className="p-1 hover:text-primary transition">+41 (0)21 623 77 77</a></li>
@@ -29,7 +29,7 @@ export const Footer = () => {
                                 </ul>
                             </div>
                             <div className="flex-1">
-                                <h4 className="font-bold">​Pour contacter notre Centre de support</h4>
+                                <h4 className="font-bold">​Pour contacter notre centre de support</h4>
                                 <ul className="my-2">
                                     <li className="my-2"><a href="support@protocol.ch" className="p-1 hover:text-primary transition">support@protocol.ch</a></li>
                                 </ul>
@@ -37,7 +37,7 @@ export const Footer = () => {
                         </div>                                    
                     </div>
                     <div>
-                        <div className="grid grid-cols-3 gap-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 desktop:grid-cols-3 gap-5">
                             <div>
                                 <h4 className="font-bold">Nos solutions</h4>
                                 <nav>
@@ -78,8 +78,19 @@ export const Footer = () => {
                                         </li>
                                     </ul>
                                 </nav>
+                                <h4 className="font-bold mt-7 desktop:mt-0 block desktop:hidden">A propos</h4>
+                                <nav className="block desktop:hidden">
+                                    <ul className="my-2">
+                                        <li className="my-2">
+                                            <Link href="" className="p-1 hover:text-primary transition">L’entreprise</Link>
+                                        </li>
+                                        <li className="my-2">
+                                            <Link href="" className="p-1 hover:text-primary transition">Contact</Link>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
-                            <div>
+                            <div className="hidden desktop:block">
                                 <h4 className="font-bold">A propos</h4>
                                 <nav>
                                     <ul className="my-2">

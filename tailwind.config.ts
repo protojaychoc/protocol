@@ -10,6 +10,12 @@ export default {
 		fontFamily: {
 			sans: ['var(--font-geist-sans)'],
 		  },
+		  screens: {
+			sm: '480px',
+			md: '768px',
+			lg: '976px',
+			desktop: '1440px',
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

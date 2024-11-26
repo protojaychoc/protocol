@@ -132,7 +132,7 @@ export const data = {
       },
       cardContact: {
         title: "Nous nous tenons à votre disposition",
-        description: "N’hésitez pas à contacter nos bureaux pour tout complément d’information que vous pourriez souhaiter.",
+        description: "N’hésitez pas à contacter nos bureaux pour tout complément d’information dont vous auriez besoin.",
         card: [
           {
             title: "Par téléphone",
