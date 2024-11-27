@@ -1,14 +1,39 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from 'react';
 import LogoProtocol from "../../public/logo_protocol.png";
 
 
 export const Header = () => {
+    const [showHeader, setShowHeader] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        if(currentScrollY > lastScrollY) {
+            setShowHeader(false);
+        }else{
+            setShowHeader(true);
+        }
+
+        setLastScrollY(currentScrollY);
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        }
+    }, [lastScrollY]);
+
   return (
     <>
-        <header className="fixed z-50 bg-background w-full">
+        <header className={`fixed top-0 z-50 bg-background w-full transition ease-in-out delay-00 ${showHeader ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
             <div className="block mx-auto max-w-theme-wide desktop:px-52 px-6">
-                <nav className="h-24 flex justify-between items-center text-gray-500">
+                <nav className={`h-[var(--header-height)] flex justify-between items-center text-gray-500`}>
                     <ul className="flex justifiy-center items-center gap-6 desktop:gap-16">
                         <li>
                             <Link href="/" className="py-2 px-4 transition hover:text-primary active:text-black active:font-medium">
@@ -17,7 +42,7 @@ export const Header = () => {
                         </li>
                         <li className="relative">
                             <Link href="/" className="py-4 px-4 transition hover:text-primary active:text-black active:font-medium font-medium text-black">Accueil</Link>
-                            <span className="absolute -bottom-9 left-[50%] translate-x-[-50%] block h-1 w-[40px] bg-gray-200 rounded-sm"></span>
+                            <span className="absolute -bottom-9 left-[50%] translate-x-[-50%] block h-[3px] w-[40px] bg-gray-200 rounded-sm"></span>
                         </li>
                         <li><Link href=""  className="py-2 px-4 transition hover:text-primary active:text-black active:font-medium">Solutions</Link></li>
                         <li><Link href=""  className="py-2 px-4 transition hover:text-primary active:text-black active:font-medium">L'entreprise</Link></li>
@@ -26,8 +51,9 @@ export const Header = () => {
                     <Link href="/" className="group"><button className="border rounded-sm px-4 py-2 transition group-hover:bg-blue-500 group-hover:text-white group-active:text-secondary">Support 24/7</button></Link>
                 </nav>
             </div>
-            <div className="border-b-[1px] w-full border-b-gray-100"></div>
+            <span className={`absolute top-[var(--header-height)] right-0 left-0 border-b-[1px] border-b-gray-100 w-full`}></span>
         </header>
+       
     </>
   );
 };

@@ -21,10 +21,10 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} antialiased h-full w-full m-auto font-sans`}
       >
-        <Header />
-        {/* <MenuDesktop /> */}
-        {children}
-        <Footer />
+          <Header />
+          {/* <MenuDesktop /> */}
+          {children}
+          <Footer />
       </body>
     </html>
   );

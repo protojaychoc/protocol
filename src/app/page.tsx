@@ -13,8 +13,10 @@ import {CardContact} from '../components/CardContact';
 
 export default function Home() {
 
+
+
   return (
-    <main className='px-6 pt-24'>
+    <main className='px-6 pt-[var(--header-height)]'>
       <Hero hero={data.pages.home.hero} img={homeDesktop} />      
       <InterTitle interTitle={data.pages.home.interTitle} hLvh={false} mt={true} />
       <BannerShowcase bannerShowcase={data.pages.home.bannerShowcase} img={bannerShowcaseImage} />

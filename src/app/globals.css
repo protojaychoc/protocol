@@ -23,6 +23,7 @@
     --destructive-foreground: 0 0% 100%;
     --ring: 220 66% 58%;
     --radius: 0.5rem;
+    --header-height: 96px;
   }
 
   .dark {
@@ -45,6 +46,7 @@
     --destructive: 0 86% 49%;
     --destructive-foreground: 0 0% 100%;
     --ring: 220 66% 58%;
+    --header-height: 96px;
   }
 }
 @layer base {
