@@ -1,5 +1,9 @@
 export const data = {
   pages: {
+    meta: {
+      title: "Protocol",
+      description: "Protocol, votre prestataire informatique de proximité",
+    },
     home: {
         hero:{
             title: "Votre prestataire informatique de proximité",

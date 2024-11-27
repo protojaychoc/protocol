@@ -1,3 +1,4 @@
+'use client'
 import homeDesktop from '../../public/home-desktop.png';
 import allInclusive from '../../public/all-inclusive.jpg';
 import { data } from '../../data';
@@ -12,7 +13,6 @@ import { FeatureShowcase } from '../components/FeatureShowcase';
 import {CardContact} from '../components/CardContact';
 
 export default function Home() {
-
 
 
   return (

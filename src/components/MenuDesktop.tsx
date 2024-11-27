@@ -1,11 +1,14 @@
+"use client";
 import Link from "next/link";
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
-
+import {useMenuDesktop} from '../contexts/MenuDesktopContext';
 
 export const MenuDesktop = () => {
+    const { menuOpen } = useMenuDesktop();
+
     return (
-        <div className="bg-black/50 absolute z-10 top-24 right-0 left-0 bottom-0">
-            <nav className="m-4 bg-background grid grid-flow-col grid-cols-[auto_40%] rounded-xl overflow-hidden">
+        <div className={`bg-black/50 absolute z-10 top-24 right-0 left-0 bottom-0 ${menuOpen ? "block" : "hidden"}`}>
+            <nav className="relative m-4 bg-background grid grid-flow-col grid-cols-[auto_40%] rounded-xl overflow-hidden">
                 <ul className="p-8 ml-[20%]">
                     <li className="group border-b-[1px] border-b-secondary">
                         <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">Service Cloud</Link>
@@ -14,7 +17,7 @@ export const MenuDesktop = () => {
                         <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">Pack all-inclusive</Link>
                     </li>
                     <li className="group border-b-[1px] border-b-secondary">
-                        <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">Service de support</Link>
+                        <Link href="/solutions/support" className="block text-3xl py-4 group-hover:text-primary transition">Service de support</Link>
                     </li>
                     <li className="group border-b-[1px] border-b-secondary">
                         <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">Service de sécurité</Link>
@@ -38,7 +41,7 @@ export const MenuDesktop = () => {
                         <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">Protection Sinistre</Link>
                     </li>
                 </ul>
-                <ul className="bg-card p-8">
+                <ul className="bg-card py-20 px-8 flex justify-center align-center flex-col">
                     <li>
                         <Link href="" className="flex group bg-background justify-between items-start flex-col p-8 m-4 rounded-xl min-h-52 max-w-[420px]">
                             <div>
@@ -58,6 +61,13 @@ export const MenuDesktop = () => {
                         </Link>
                     </li>
                 </ul>
+                <button className="absolute top-4 right-4 bg-background rounded-full w-10 h-10">
+                    <div className="relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] block size-9">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </button>
             </nav>
         </div>
     );
