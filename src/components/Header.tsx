@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LogoProtocol from "../../public/logo_protocol.png";
 import {useMenuDesktop} from '../contexts/MenuDesktopContext';
 import { usePathname } from 'next/navigation'
@@ -10,8 +10,9 @@ import { usePathname } from 'next/navigation'
 export const Header = () => {
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { toggleMenu, menuOpen } = useMenuDesktop();
+    const { toggleMenu } = useMenuDesktop();
     const pathname = usePathname()
+    const [isExpanded, setIsExpdanded] = useState([false, false]);
 
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
@@ -33,7 +34,13 @@ export const Header = () => {
         }
     }, [lastScrollY]);
 
-    console.log(pathname);
+    const handleChange = (index: number) => {
+        toggleMenu;
+        setIsExpdanded((prev) =>
+            prev.map((state, i) => (i === index ? !state : state))
+        );
+    };
+
 
   return (
     <>
@@ -46,37 +53,74 @@ export const Header = () => {
                                 <Image src={LogoProtocol} alt="Logo Protocol S.A." className="max-w-[200px] w-[80%] min-w-[120px]"></Image>
                             </Link>
                         </li>
-                        <li className="relative">
-                            <Link href="/" className={`py-4 px-4 transition font-medium ${pathname == "/" ? "text-black" : ""}`}>
+                        <li className="relative group">
+                            <Link 
+                                href="/" 
+                                className={`py-4 px-4 transition font-medium ${pathname == "/" ? "text-black" : ""}`}
+
+                            >
                                 Accueil
                             </Link>
-                            <span className="absolute -bottom-9 left-[50%] translate-x-[-50%] block h-[3px] w-[40px] bg-gray-200 rounded-sm group"></span>
+                            <span className={`
+                                absolute left-[50%] translate-x-[-50%] -bottom-9
+                                block h-[3px] bg-gray-200 rounded-sm
+                                transition-all duration-300 ease-in-out  
+                                ${pathname == "/" ? "w-[40px]" : "w-0"}
+                                group-hover:w-[40px]
+                            `}             
+                            ></span>
                         </li>
                         <li className={`relative group ${pathname == "/solutions/support" ? "text-black" : ""}`}>
-                            <button onClick={toggleMenu} className="block py-2 px-4 transition">
+                            <button 
+                                onClick={() => handleChange(0)}
+                                className="block py-2 px-4 transition"
+                            >
                                 Solutions
                             </button>
                             <span className={`
                                 absolute left-[50%] translate-x-[-50%] -bottom-7
                                 block h-[3px] bg-gray-200 rounded-sm
-                                transition-all duration-300 ease-in-out                                
-                                ${menuOpen ? "w-[40px]" : "w-0"}
+                                transition-all duration-300 ease-in-out  
+                                ${isExpanded ? "w-[40px]" : "w-0"}
                                 group-hover:w-[40px]
                             `}                
                             ></span>
                         </li>
-                        <li className={`relative ${menuOpen ? "group" : ""}`}>
-                            <button onClick={toggleMenu} className="py-2 px-4 transition hover:text-primary">
+                        <li className={`relative group ${pathname == "/entreprise" ? "text-black" : ""}`}>
+                            <button 
+                                onClick={() => handleChange(1)}
+                                className="py-2 px-4 transition"
+                            >
                                 L'entreprise
                             </button>
+                            <span className={`
+                                absolute left-[50%] translate-x-[-50%] -bottom-7
+                                block h-[3px] bg-gray-200 rounded-sm
+                                transition-all duration-300 ease-in-out
+                                ${isExpanded ? "w-[40px]" : "w-0"}
+                                group-hover:w-[40px]
+                            `}                
+                            ></span>
                         </li>
-                        <li className={`relative ${menuOpen ? "group" : ""}`}>
-                            <Link href=""  className="py-2 px-4 transition hover:text-primary ">
+                        <li className={`relative group ${pathname == "/contact" ? "text-black" : ""}`}>
+                            <Link href="/contact" className="py-2 px-4 transition ">
                                 Contact
                             </Link>
+                            <span className={`
+                                absolute left-[50%] translate-x-[-50%] -bottom-9
+                                block h-[3px] bg-gray-200 rounded-sm
+                                transition-all duration-300 ease-in-out  
+                                ${pathname == "/contact" ? "w-[40px]" : "w-0"}
+                                group-hover:w-[40px]
+                            `}                
+                            ></span>
                         </li>
                     </ul>
-                    <Link href="/" className="group"><button className="border rounded-sm px-4 py-2 transition group-hover:bg-blue-500 group-hover:text-white group-active:text-secondary">Support 24/7</button></Link>
+                    <Link href="/" className="group">
+                        <button className="border rounded-sm px-4 py-2 transition group-hover:bg-blue-500 group-hover:text-white group-active:text-secondary">
+                            Support 24/7
+                        </button>
+                    </Link>
                 </nav>
             </div>
             <span className={`absolute top-[var(--header-height)] right-0 left-0 border-b-[1px] border-b-gray-100 w-full`}></span>
