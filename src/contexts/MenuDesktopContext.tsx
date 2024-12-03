@@ -2,20 +2,27 @@
 import { createContext, useContext, useState, useEffect, ReactNode, use } from "react";
 
 interface MenuDesktopContextProps {
-    menuOpen: boolean;
-    toggleMenu: () => void;
+    activeMenu: string | null;
+    toggleMenu: (menuId: string) => void;
+    removeMenu: () => void;
 }
 
 // Crée le contexte
 const MenuDesktopContext = createContext<MenuDesktopContextProps | undefined>(undefined);
 
 export const MenuDesktopProvider = ({ children }: { children: ReactNode }) => {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
-    const toggleMenu = () => {setMenuOpen((prev) => !prev)}
+    const toggleMenu = (menuId: string) => {
+        setActiveMenu((prev) => (prev === menuId ? null : menuId));
+      };
+
+    const removeMenu = () => {
+        setActiveMenu(null);
+    }
 
     return (
-        <MenuDesktopContext.Provider value={{ menuOpen, toggleMenu }}>
+        <MenuDesktopContext.Provider value={{ removeMenu, activeMenu, toggleMenu }}>
             {children}
         </MenuDesktopContext.Provider>
     );

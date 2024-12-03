@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 export const Header = () => {
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { toggleMenu } = useMenuDesktop();
+    const { toggleMenu, activeMenu } = useMenuDesktop();
     const pathname = usePathname()
     const [isExpanded, setIsExpdanded] = useState([false, false]);
 
@@ -34,17 +34,10 @@ export const Header = () => {
         }
     }, [lastScrollY]);
 
-    const handleChange = (index: number) => {
-        toggleMenu;
-        setIsExpdanded((prev) =>
-            prev.map((state, i) => (i === index ? !state : state))
-        );
-    };
-
 
   return (
     <>
-        <header className={`fixed top-0 z-50 bg-background w-full transition ease-in-out delay-00 ${showHeader ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
+        <header className={`fixed top-0 z-50 bg-background w-full transition ease-in-out delay-00 ${showHeader || activeMenu ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
             <div className="block mx-auto max-w-theme-wide desktop:px-52 px-6">
                 <nav className={`h-[var(--header-height)] flex justify-between items-center text-gray-500`}>
                     <ul className="flex justifiy-center items-center gap-6 desktop:gap-16">
@@ -70,10 +63,10 @@ export const Header = () => {
                             `}             
                             ></span>
                         </li>
-                        <li className={`relative group ${pathname == "/solutions/support" ? "text-black" : ""}`}>
+                        <li className={`relative group ${pathname.startsWith("/solutions") ? "text-black" : ""}`}>
                             <button 
-                                onClick={() => handleChange(0)}
-                                className="block py-2 px-4 transition"
+                                onClick={() => toggleMenu("solutions")}
+                                className={`py-2 px-4 transition`}
                             >
                                 Solutions
                             </button>
@@ -81,15 +74,15 @@ export const Header = () => {
                                 absolute left-[50%] translate-x-[-50%] -bottom-7
                                 block h-[3px] bg-gray-200 rounded-sm
                                 transition-all duration-300 ease-in-out  
-                                ${isExpanded ? "w-[40px]" : "w-0"}
+                                ${activeMenu === "solutions" ? "w-[40px]" : "w-0"}
                                 group-hover:w-[40px]
                             `}                
                             ></span>
                         </li>
-                        <li className={`relative group ${pathname == "/entreprise" ? "text-black" : ""}`}>
+                        <li className={`relative group ${pathname.startsWith("/entreprise") ? "text-black" : ""}`}>
                             <button 
-                                onClick={() => handleChange(1)}
-                                className="py-2 px-4 transition"
+                                onClick={() => toggleMenu("entreprise")}
+                                className={`py-2 px-4 transition`}
                             >
                                 L'entreprise
                             </button>
@@ -97,7 +90,7 @@ export const Header = () => {
                                 absolute left-[50%] translate-x-[-50%] -bottom-7
                                 block h-[3px] bg-gray-200 rounded-sm
                                 transition-all duration-300 ease-in-out
-                                ${isExpanded ? "w-[40px]" : "w-0"}
+                                ${activeMenu === "entreprise" ? "w-[40px]" : "w-0"}
                                 group-hover:w-[40px]
                             `}                
                             ></span>

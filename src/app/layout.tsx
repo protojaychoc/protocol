@@ -4,8 +4,8 @@ import "./globals.css";
 import {Header} from '../components/Header'
 import {Footer} from '../components/Footer'
 import {MenuDesktop} from '../components/MenuDesktop'
-import {MenuDesktopProvider} from '../contexts/MenuDesktopContext';
-
+import {MenuDesktopProvider } from '../contexts/MenuDesktopContext';
+import BodyClassManager from "../components/BodyClassManager";
 
 export const metadata: Metadata = {
   title: "Protocol",
@@ -22,12 +22,13 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} antialiased h-full w-full m-auto font-sans`}
       >
-        <MenuDesktopProvider>
+        <MenuDesktopProvider >
+        <BodyClassManager />
           <Header />
           <MenuDesktop />
           {children}
           <Footer />
-        </MenuDesktopProvider>
+        </MenuDesktopProvider >
       </body>
     </html>
   );
