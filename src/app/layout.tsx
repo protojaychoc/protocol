@@ -3,8 +3,8 @@ import { GeistSans } from 'geist/font/sans'
 import "./globals.css";
 import {Header} from '../components/Header'
 import {Footer} from '../components/Footer'
-import {MenuDesktop} from '../components/MenuDesktop'
-import {MenuDesktopProvider } from '../contexts/MenuDesktopContext';
+import {Menu} from '../components/Menu'
+import {MenuProvider } from '../contexts/MenuContext';
 import BodyClassManager from "../components/BodyClassManager";
 
 export const metadata: Metadata = {
@@ -20,15 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${GeistSans.variable} antialiased h-full w-full m-auto font-sans`}
+        className={`${GeistSans.variable} antialiased h-full m-auto font-sans`}
       >
-        <MenuDesktopProvider >
+        <MenuProvider >
         <BodyClassManager />
           <Header />
-          <MenuDesktop />
-          {children}
+          <Menu />
+          <main className={`lg:px-6 lg:pt-[var(--header-height)]`}>
+            {children}
+          </main>
           <Footer />
-        </MenuDesktopProvider >
+        </MenuProvider >
       </body>
     </html>
   );

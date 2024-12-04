@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link';
 import callCenter from '../../../../public/call-center.jpg'
 import ticketingTool from '../../../../public/ticketing-tool.jpg'
 import { data } from '../../../../data';
@@ -9,14 +7,16 @@ import {InterTitle} from '../../../components/InterTitle';
 import {Contract} from '../../../components/Contract';
 
 
-export default function Page() {
+export default function SupportPage() {
 
   return (
-    <main>
+    <>
       <Hero hero={data.pages.support.hero} img={callCenter} />
-      <InterTitle interTitle={data.pages.support.interTitle} />
-      <Contract contract={data.pages.support.contract} />
-      <Banner banner={data.pages.home.banner} img={ticketingTool} />
-    </main>
+      <div className='px-3 lg:px-0'>
+        <InterTitle interTitle={data.pages.support.interTitle} />
+        <Contract contract={data.pages.support.contract} />
+        <Banner banner={data.pages.home.banner} img={ticketingTool} />
+      </div>
+    </>
   );
 }

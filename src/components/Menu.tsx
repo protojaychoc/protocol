@@ -1,12 +1,16 @@
 "use client";
 import Link from "next/link";
 import { ChevronRightIcon } from '@heroicons/react/24/solid'
-import {useMenuDesktop} from '../contexts/MenuDesktopContext';
+import {useMenu} from '../contexts/MenuContext';
 
-export const MenuDesktop = () => {
-    const { removeMenu, activeMenu } = useMenuDesktop();
+export const Menu = () => {
+    const { removeMenu, activeMenu } = useMenu();
 
     if (!activeMenu) return null
+
+    const handleCloseMenu = () => {
+        removeMenu();
+    }
 
     return (
         <div className={`bg-black/50 fixed z-10 top-24 right-0 left-0 bottom-0 ${activeMenu ? "block" : "hidden"}`}>
@@ -14,34 +18,34 @@ export const MenuDesktop = () => {
                 {activeMenu === "solutions" && (
                     <ul className="p-8 ml-[20%]">
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/service-cloud" className="block text-3xl py-4 group-hover:text-primary transition">Service Cloud</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/service-cloud" className="block text-3xl py-4 group-hover:text-primary transition">Service Cloud</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/pack-all-inclusive" className="block text-3xl py-4 group-hover:text-primary transition">Pack all-inclusive</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/pack-all-inclusive" className="block text-3xl py-4 group-hover:text-primary transition">Pack all-inclusive</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/support" className="block text-3xl py-4 group-hover:text-primary transition">Service de support</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/support" className="block text-3xl py-4 group-hover:text-primary transition">Service de support</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/service-securite" className="block text-3xl py-4 group-hover:text-primary transition">Service de sécurité</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/service-securite" className="block text-3xl py-4 group-hover:text-primary transition">Service de sécurité</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/service-maintenance" className="block text-3xl py-4 group-hover:text-primary transition">Service de maintenance</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/service-maintenance" className="block text-3xl py-4 group-hover:text-primary transition">Service de maintenance</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/gouvernance-conseils" className="block text-3xl py-4 group-hover:text-primary transition">Gouvernance & Conseils</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/gouvernance-conseils" className="block text-3xl py-4 group-hover:text-primary transition">Gouvernance & Conseils</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/conduite-projet-it" className="block text-3xl py-4 group-hover:text-primary transition">Conduite de projet IT</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/conduite-projet-it" className="block text-3xl py-4 group-hover:text-primary transition">Conduite de projet IT</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/audi-securite" className="block text-3xl py-4 group-hover:text-primary transition">Audit de sécurité</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/audi-securite" className="block text-3xl py-4 group-hover:text-primary transition">Audit de sécurité</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/formation-securite" className="block text-3xl py-4 group-hover:text-primary transition">Formation de sécurité IT</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/formation-securite" className="block text-3xl py-4 group-hover:text-primary transition">Formation de sécurité IT</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/solutions/protection-sinistre" className="block text-3xl py-4 group-hover:text-primary transition">Protection Sinistre</Link>
+                            <Link onClick={handleCloseMenu} href="/solutions/protection-sinistre" className="block text-3xl py-4 group-hover:text-primary transition">Protection Sinistre</Link>
                         </li>
                     </ul>
                 )}
@@ -49,20 +53,20 @@ export const MenuDesktop = () => {
                 {activeMenu === "entreprise" && (
                     <ul className="p-8 ml-[20%]">
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="" className="block text-3xl py-4 group-hover:text-primary transition">A propos</Link>
+                            <Link onClick={handleCloseMenu} href="" className="block text-3xl py-4 group-hover:text-primary transition">A propos</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/entreprise/partenairs" className="block text-3xl py-4 group-hover:text-primary transition">Nos partenaires</Link>
+                            <Link onClick={handleCloseMenu} href="/entreprise/partenairs" className="block text-3xl py-4 group-hover:text-primary transition">Nos partenaires</Link>
                         </li>
                         <li className="group border-b-[1px] border-b-secondary">
-                            <Link href="/entreprise/secteurs-activites" className="block text-3xl py-4 group-hover:text-primary transition">Les secteurs d'activités</Link>
+                            <Link onClick={handleCloseMenu} href="/entreprise/secteurs-activites" className="block text-3xl py-4 group-hover:text-primary transition">Les secteurs d'activités</Link>
                         </li>
                     </ul>
                 )}
                 
                 <ul className="bg-card py-20 px-8 flex justify-center align-center flex-col">
                     <li>
-                        <Link href="" className="flex group bg-background justify-between items-start flex-col p-8 m-4 rounded-xl min-h-52 max-w-[420px]">
+                        <Link onClick={handleCloseMenu} href="" className="flex group bg-background justify-between items-start flex-col p-8 m-4 rounded-xl min-h-52 max-w-[420px]">
                             <div>
                                 <h5 className="text-2xl font-medium">Notre téléphone</h5>
                                 <h6 className="text-lg mt-4">Composez-le: 021 623 77 77</h6>
@@ -71,7 +75,7 @@ export const MenuDesktop = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link href="" className="flex group bg-background justify-between items-start flex-col p-8 m-4 rounded-xl min-h-52 max-w-[420px]">
+                        <Link onClick={handleCloseMenu} href="" className="flex group bg-background justify-between items-start flex-col p-8 m-4 rounded-xl min-h-52 max-w-[420px]">
                             <div>
                                 <h5 className="text-2xl font-medium">Ouvrir un ticket</h5>
                                 <h6 className="text-lg mt-4">Permettre à vos collaborateurs de suivre leurs incidents et problèmes</h6>

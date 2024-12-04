@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { useMenuDesktop } from "../contexts/MenuDesktopContext";
+import { useMenu } from "../contexts/MenuContext";
 
 const BodyClassManager = () => {
-  const { activeMenu } = useMenuDesktop();
+  const { activeMenu } = useMenu();
 
   useEffect(() => {
     // Ajoute ou supprime la classe en fonction de `activeMenu`

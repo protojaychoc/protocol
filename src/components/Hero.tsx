@@ -18,22 +18,34 @@ export const Hero = ({hero, img}: HeroProps) => {
 
     return (
         <section className="block mx-auto max-w-theme-wide desktop:px-52">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-5 min-h-[calc(100vh-96px)]">
-                <div className="flex justify-end lg:justify-center flex-col lg:pr-10">
-                    <h1 className="py-5 text-5xl desktop:text-6xl font-medium text-center lg:text-left">{interTitleParts[0]} <span className="text-primary">{highlight}</span> {interTitleParts[1]}</h1>
-                    <p className="text-xl text-center lg:text-left">{hero.subtitle}</p>
+            <div className="flex lg:flex-row flex-col-reverse justify-stretch items-stretch lg:justify-center lg:items-center gap-10 lg:gap-5 lg:min-h-[calc(100vh-96px)]">
+                {/* Première colonne */}
+                <div className="flex-1 relative">
+                <div className="
+                absolute lg:static bg-card lg:bg-background -top-24 right-3 left-3 lg:top-0 lg:right-0 lg:left-0 flex justify-start flex-col pt-1 pr-1 pl-1 pb-3 rounded-xl lg:rounded-none 
+                lg:justify-center lg:pr-10
+                ">
+                    <h1 className="py-5 text-4xl lg:text-5xl desktop:text-6xl font-medium text-center lg:text-left">
+                    {interTitleParts[0]} <span className="text-primary">{highlight}</span> {interTitleParts[1]}
+                    </h1>
+                    <p className="text-md lg:text-xl text-center lg:text-left">{hero.subtitle}</p>
                 </div>
+                </div>
+
+                {/* Deuxième colonne */}
+                <div className="flex-1 m-0-auto">
                 <picture className="flex justify-start lg:justify-center flex-col desktop:relative justify-self-start lg:justify-self-auto">
-                    <div className="desktop:absolute desktop:top-0 desktop:bottom-0 lg:h-[calc(100vh-96px)] desktop:w-[calc(100%+13rem)] py-5">
-                        <div className="flex items-center justify-center w-full lg:h-full bg-foreground overflow-hidden rounded-xl">
+                    <div className="lg:h-[calc(100vh-96px)] desktop:w-[calc(100%+13rem)] lg:py-5">
+                        <div className="flex items-center justify-center h-full bg-foreground lg:rounded-xl overflow-hidden">
                             <Image
                             src={img}
                             alt="Call-center support 24/7"
-                            className="mx-auto object-cover"
+                            className="mx-auto h-[75vh] max-h-full lg:h-auto object-cover"
                             />
                         </div>
                     </div>
                 </picture>
+                </div>
             </div>
         </section>
     );
