@@ -11,8 +11,8 @@ export const Header = () => {
     const [showHeader, setShowHeader] = useState(true);
     const [showBackgroundHeader, setShowBackgroundHeader] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { toggleMenu, activeMenu } = useMenu();
-    const [isOpen, setIsOpen] = useState(false);
+    const { toggleMenuDesktop, activeMenuDesktop, activeMenuMobile, toggleMenuMobile } = useMenu();
+    
     const pathname = usePathname()
 
     const handleScroll = () => {
@@ -43,7 +43,7 @@ export const Header = () => {
 
   return (
     <>
-        <header className={`fixed top-0 right-0 left-0 z-50 ${showBackgroundHeader ? 'bg-background' : ''} lg:bg-background w-full transition ease-in-out delay-300 ${showHeader || activeMenu ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
+        <header className={`fixed top-0 right-0 left-0 z-50 ${showBackgroundHeader ? 'bg-background' : ''} lg:bg-background w-full transition ease-in-out delay-300 ${showHeader || activeMenuDesktop ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
             <div className="hidden lg:block mx-auto max-w-theme-wide desktop:px-52 px-6">
                 <nav className={`h-[var(--header-height)] flex justify-between items-center text-gray-500`}>
                     <ul className="flex justifiy-center items-center gap-6 desktop:gap-16">
@@ -71,7 +71,7 @@ export const Header = () => {
                         </li>
                         <li className={`relative group ${pathname.startsWith("/solutions") ? "text-black" : ""}`}>
                             <button 
-                                onClick={() => toggleMenu("solutions")}
+                                onClick={() => toggleMenuDesktop("solutions")}
                                 className={`py-2 px-4 transition`}
                             >
                                 Solutions
@@ -80,14 +80,14 @@ export const Header = () => {
                                 absolute left-[50%] translate-x-[-50%] -bottom-7
                                 block h-[3px] bg-gray-200 rounded-sm
                                 transition-all duration-300 ease-in-out  
-                                ${activeMenu === "solutions" ? "w-[40px]" : "w-0"}
+                                ${activeMenuDesktop === "solutions" ? "w-[40px]" : "w-0"}
                                 group-hover:w-[40px]
                             `}                
                             ></span>
                         </li>
                         <li className={`relative group ${pathname.startsWith("/entreprise") ? "text-black" : ""}`}>
                             <button 
-                                onClick={() => toggleMenu("entreprise")}
+                                onClick={() => toggleMenuDesktop("entreprise")}
                                 className={`py-2 px-4 transition`}
                             >
                                 L'entreprise
@@ -96,7 +96,7 @@ export const Header = () => {
                                 absolute left-[50%] translate-x-[-50%] -bottom-7
                                 block h-[3px] bg-gray-200 rounded-sm
                                 transition-all duration-300 ease-in-out
-                                ${activeMenu === "entreprise" ? "w-[40px]" : "w-0"}
+                                ${activeMenuDesktop === "entreprise" ? "w-[40px]" : "w-0"}
                                 group-hover:w-[40px]
                             `}                
                             ></span>
@@ -127,12 +127,12 @@ export const Header = () => {
                         <Image src={LogoProtocol} alt="Logo Protocol S.A." width={200} height={100} priority className="max-w-[200px] w-[80%] min-w-[120px]"></Image>
                     </Link>
                    
-                    <div className="inline-block cursor-pointer bg-card p-1 mr-2 rounded-sm transform transition-all ease-in-out duration-500" onClick={() => setIsOpen(!isOpen)}>
+                    <div className="inline-block cursor-pointer bg-card p-1 mr-2 rounded-sm transform transition-all ease-in-out duration-500" onClick={() => toggleMenuMobile()}>
                         <button
                             className="flex justify-center items-center"
                             aria-label="Toggle menu"
                             >
-                                <span className={`inline-block mr-2 ${isOpen ? 'hidden' : ''}`}>Menu</span>
+                                <span className={`inline-block mr-2 ${activeMenuMobile ? 'hidden' : ''}`}>Menu</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -140,14 +140,14 @@ export const Header = () => {
                                 strokeWidth="1.5"
                                 stroke="currentColor"
                                 className={`inline-block w-8 h-8 transform transition-transform duration-300 ${
-                                isOpen ? 'rotate-90' : ''
+                                activeMenuMobile ? 'rotate-90' : ''
                                 }`}
                             >
                                 <path
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 d={`${
-                                    isOpen
+                                    activeMenuMobile
                                     ? 'M6 6L18 18M18 6L6 18' // Croix
                                     : 'M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5' // Hamburger
                                 }`}

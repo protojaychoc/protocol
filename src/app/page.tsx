@@ -3,7 +3,7 @@ import allInclusive from '../../public/all-inclusive.jpg';
 import bannerShowcaseImage from '../../public/bannerShowcase.jpg';
 import { data } from '../../data';
 import {InterTitle} from '../components/InterTitle';
-import {Hero} from '../components/Hero';
+import {HeroHome} from '../components/HeroHome';
 import {Banner} from '../components/Banner'
 import {BannerShowcase} from '../components/BannerShowcase';
 import {TextShowcaseRow} from '../components/TextShowcaseRow';
@@ -14,8 +14,9 @@ import {CardContact} from '../components/CardContact';
 export default function Home() {
   return (
     <>
-      <InterTitle interTitle={data.pages.home.interTitle} hLvh={false} mt={true} />
+    <HeroHome hero={data.pages.support.hero} img={homeDesktop} />
       <div className='px-3 lg:px-0'>
+        <InterTitle interTitle={data.pages.home.interTitle} hLvh={false} mt={true} />
         <BannerShowcase bannerShowcase={data.pages.home.bannerShowcase} img={bannerShowcaseImage} />
         <TextShowcaseRow textShowcaseRow={data.pages.home.textShowcaseRow} />
         <InterTitle interTitle={data.pages.home.featureShowcaseTitle} hLvh={false} mt={false} />

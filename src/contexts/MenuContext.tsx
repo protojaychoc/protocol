@@ -2,27 +2,36 @@
 import { createContext, useContext, useState, useEffect, ReactNode, use } from "react";
 
 interface MenuContextProps {
-    activeMenu: string | null;
-    toggleMenu: (menuId: string) => void;
-    removeMenu: () => void;
+    activeMenuDesktop: string | null;
+    activeMenuMobile: boolean;
+    toggleMenuDesktop: (menuId: string) => void;
+    toggleMenuMobile: () => void;
+    closAllMenus: () => void;
 }
 
-// Crée le contexte
 const MenuContext = createContext<MenuContextProps | undefined>(undefined);
 
 export const MenuProvider = ({ children }: { children: ReactNode }) => {
-    const [activeMenu, setActiveMenu] = useState<string | null>(null);
+    const [activeMenuDesktop, setActiveMenuDesktop] = useState<string | null>(null);
+    const [activeMenuMobile, setActiveMenuMobile] = useState(false);
 
-    const toggleMenu = (menuId: string) => {
-        setActiveMenu((prev) => (prev === menuId ? null : menuId));
-      };
+    const toggleMenuDesktop = (menuId: string) => {
+        setActiveMenuDesktop((prev) => (prev === menuId ? null : menuId));
+        setActiveMenuMobile(false);
+    };
 
-    const removeMenu = () => {
-        setActiveMenu(null);
+    const toggleMenuMobile = () => {
+        setActiveMenuMobile((prev) => !prev);
+        setActiveMenuDesktop(null);
+    }
+
+    const closAllMenus = () => {
+        setActiveMenuDesktop(null);
+        setActiveMenuMobile(false);
     }
 
     return (
-        <MenuContext.Provider value={{ removeMenu, activeMenu, toggleMenu }}>
+        <MenuContext.Provider value={{ activeMenuDesktop, activeMenuMobile, toggleMenuDesktop, toggleMenuMobile, closAllMenus }}>
             {children}
         </MenuContext.Provider>
     );
