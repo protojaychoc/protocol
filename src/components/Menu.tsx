@@ -213,7 +213,6 @@ export const Menu = () => {
         className="fixed inset-0"
         style={{ display: isDisplay ? "block" : "none" }}
       >
-        <CSSTransition in={activeMenu === "main"} unmountOnExit timeout={500}>
           <div
             className={`absolute bg-black bg-opacity-50 z-9 inset-0 lg:hidden ${
               isVisible ? "animate-fadeIn" : "animate-fadeOut"
@@ -307,7 +306,6 @@ export const Menu = () => {
               </ul>
             </ul>
           </nav>
-        </CSSTransition>
         <CSSTransition in={activeMenu === "main"} unmountOnExit timeout={500}>
           <nav className="absolute top-0 right-0 bottom-0 left-0 py-4 px-8 bg-background flex justify-between flex-col">
             <ul>
