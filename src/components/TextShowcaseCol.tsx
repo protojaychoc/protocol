@@ -22,7 +22,7 @@ export const TextShowcaseCol = ({ textShowcaseCol }: TextShowcaseColProps) => {
 
   return (
     <section className="block mx-auto max-w-theme-wide px-4 desktop:px-52 my-40">
-      <div className="desktop:grid desktop:grid-cols-[500px_auto] desktop:gap-x-12 lg:h-lvh mt-24 lg:mt-0 flex flex-col items-center justify-center">
+      <div className="desktop:grid desktop:grid-cols-[35%_65%] desktop:gap-x-12 lg:h-lvh mt-24 lg:mt-0 flex flex-col items-center justify-center">
         <div className="flex justify-center flex-col my-16 desktop:my-0">
             <h3 className="text-4xl desktop:text-5xl font-medium">{textShowcaseColParts[0]} <span className="text-primary">{highlight}</span> {textShowcaseColParts[1]}</h3>
             { textShowcaseCol.link &&  <Link href="" className="inline mt-8 text-primary transition group cursor-pointer">

@@ -11,7 +11,7 @@ export const Header = () => {
     const [showHeader, setShowHeader] = useState(true);
     const [showBackgroundHeader, setShowBackgroundHeader] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0);
-    const { toggleMenuDesktop, activeMenuDesktop, activeMenuMobile, toggleMenuMobile } = useMenu();
+    const { toggleMenuDesktop, toggleMenuMobile, activeMenuDesktop, activeMenuMobile } = useMenu();
     
     const pathname = usePathname()
 
@@ -41,12 +41,13 @@ export const Header = () => {
         }
     }, [lastScrollY]);
 
+
   return (
     <>
-        <header className={`fixed top-0 right-0 left-0 z-50 ${showBackgroundHeader ? 'bg-background' : ''} lg:bg-background w-full transition ease-in-out delay-300 ${showHeader || activeMenuDesktop ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
+        <header className={`fixed top-0 right-0 left-0 z-50 ${showBackgroundHeader || activeMenuMobile ? 'bg-background' : ''} lg:bg-background w-full transition ease-in-out delay-200 ${showHeader || activeMenuDesktop ? "translate-y-0" : `-translate-y-[var(--header-height)]`}`}>
             <div className="hidden lg:block mx-auto max-w-theme-wide desktop:px-52 px-6">
                 <nav className={`h-[var(--header-height)] flex justify-between items-center text-gray-500`}>
-                    <ul className="flex justifiy-center items-center gap-6 desktop:gap-16">
+                    <ul className="flex justifiy-center items-center gap-6 lg:gape-10 desktop:gap-16">
                         <li>
                             <Link href="/" className="py-2 px-4">
                                 <Image src={LogoProtocol} alt="Logo Protocol S.A." width={200} height={100} priority className="max-w-[200px] w-[80%] min-w-[120px]"></Image>

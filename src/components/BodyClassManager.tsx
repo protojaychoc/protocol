@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import { useMenu } from "../contexts/MenuContext";
 
 const BodyClassManager = () => {
-  const { activeMenuDesktop } = useMenu();
+  const { activeMenuDesktop, activeMenuMobile } = useMenu();
 
   useEffect(() => {
     // Ajoute ou supprime la classe en fonction de `activeMenuDesktop`
-    if (activeMenuDesktop) {
+    if (activeMenuDesktop || activeMenuMobile) {
       document.body.classList.add(`overflow-y-hidden`);
     } else {
       document.body.classList.remove(`overflow-y-hidden`);
@@ -18,7 +18,7 @@ const BodyClassManager = () => {
     return () => {
       document.body.classList.remove(`overflow-y-hidden`);
     };
-  }, [activeMenuDesktop]);
+  }, [activeMenuDesktop, activeMenuMobile]);
 
   return null; // Pas besoin de rendre quoi que ce soit
 };

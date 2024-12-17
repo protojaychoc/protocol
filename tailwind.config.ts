@@ -64,7 +64,31 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		  spacing: {
-			'theme-wide': '115rem',
+			'theme-wide': '115rem'
+		  },
+		  keyframes: {
+			slideIn: {
+			  "0%": { transform: "translateX(100%)" },
+			  "100%": { transform: "translateX(0)" },
+			},
+			slideOut: {
+			  "0%": { transform: "translateX(0)" },
+			  "100%": { transform: "translateX(100%)" },
+			},
+			fadeIn: {
+				'0%': { opacity: '0' },
+				'100%': { opacity: '1' },
+			  },
+			  fadeOut: {
+				'0%': { opacity: '1' },
+				'100%': { opacity: '0' },
+			  },
+		  },
+		  animation: {
+			slideIn: "slideIn 0.5s ease-out",
+			slideOut: "slideOut 0.5s ease-in",
+			fadeIn: 'fadeIn 0.2s ease-in',
+  			fadeOut: 'fadeOut 0.2s ease-out',
 		  },
   	}
   },
