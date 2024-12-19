@@ -1,5 +1,5 @@
 export default async function graphqlRequest(query: object) {
-  const url = "http://localhost:8000/graphql";
+  const url = `${process.env.NEXT_PUBLIC_URL}/graphql`;
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(url, {

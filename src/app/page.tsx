@@ -17,18 +17,19 @@ export default async function Home() {
   const allPosts = await getAllPosts();
 
   console.log(allPosts);
+
   return (
     <>
       <Head>
         <title>Protocol</title>
       </Head>
-      <section>
+      {/* <section>
         <ul>
           {allPosts.map((post) => (
             <li key={post.slug}>{post.title}</li>
           ))}
         </ul>
-      </section>
+      </section> */}
       <HeroHome hero={data.pages.support.hero} img={homeDesktop} />
       <div className="px-3 lg:px-0">
         <InterTitle
