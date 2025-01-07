@@ -12,24 +12,29 @@ import { FeatureShowcase } from "../components/FeatureShowcase";
 import { CardContact } from "../components/CardContact";
 import Head from "next/head";
 import { getAllPosts } from "@/lib/posts";
+import { getHomePage } from "@/lib/pagesRequest";
+import { BlockRenderer } from "@/components/BlockRenderer/BlockRenderer";
 
 export default async function Home() {
   const allPosts = await getAllPosts();
+  const props = await getHomePage();
 
-  console.log(allPosts);
+  // console.log(allPosts);
+  // console.log(props);
 
   return (
     <>
       <Head>
         <title>Protocol</title>
       </Head>
-      {/* <section>
+      <section>
+        <BlockRenderer blocks={props} />
         <ul>
           {allPosts.map((post) => (
             <li key={post.slug}>{post.title}</li>
           ))}
         </ul>
-      </section> */}
+      </section>
       <HeroHome hero={data.pages.support.hero} img={homeDesktop} />
       <div className="px-3 lg:px-0">
         <InterTitle

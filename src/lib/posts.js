@@ -40,8 +40,12 @@ export async function getAllPosts() {
         `,
   };
 
-  const resJson = await graphqlRequest(query);
-  const allPosts = resJson.data.posts.nodes;
+  try {
+    const resJson = await graphqlRequest(query);
+    const allPosts = resJson.data.posts.nodes;
 
-  return allPosts;
+    return allPosts;
+  } catch (error) {
+    console.error(error);
+  }
 }
