@@ -15,7 +15,7 @@ export const BlockRenderer: React.FC<BlockRendererProps> = ({ blocks }) => {
         const attributes = JSON.parse(block.attributesJSON);
 
         switch (block.name) {
-          case "create-block/banner":
+          case "blocks-plugin/banner":
             return <Banner key={block.id} banner={attributes} />;
           default:
             return null;
