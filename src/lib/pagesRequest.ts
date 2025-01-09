@@ -102,7 +102,6 @@ export async function getPageDatas(slug: string[]) {
     if (!data) {
       throw new Error(`Page not found for URI, OR no DATA`);
     }
-
     return getPageDatas;
   } catch (error) {
     console.error("Error fetching page data:", error);

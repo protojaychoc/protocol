@@ -6,17 +6,20 @@ import { Footer } from "../components/Footer";
 import { Menu } from "../components/Menu";
 import { MenuProvider } from "../contexts/MenuContext";
 import BodyClassManager from "../components/BodyClassManager";
+import { getHomePage } from "@/lib/pagesRequest";
+import { BlockRenderer } from "@/components/BlockRenderer/BlockRenderer";
 
 export const metadata: Metadata = {
   title: "Protocol",
   description: "Protocol, votre prestataire informatique de proximité",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const props = await getHomePage();
   return (
     <html lang="en" className="h-full">
       <body
@@ -29,7 +32,8 @@ export default function RootLayout({
           <main className={`lg:px-6 lg:pt-[var(--header-height)]`}>
             {children}
           </main>
-          <Footer />
+          {/* <Footer /> */}
+          <BlockRenderer blocks={props} />
         </MenuProvider>
       </body>
     </html>

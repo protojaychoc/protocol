@@ -1,24 +1,32 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import {InterTitle} from '../components/InterTitle';
-import { data } from '../../data';
+import { InterTitle } from "../components/InterTitle";
+import { data } from "../../data";
 
 interface TextShowcaseRowProps {
   textShowcaseRow: {
+    interTitle: {
+      title: string;
+      subtitle?: string;
+      highlight?: string;
+      hLvh?: boolean;
+      mt?: boolean;
+    };
+    columns: {
       title: string;
       description?: string;
       link?: string;
     };
+  };
 }
 
 export const TextShowcaseRow = ({ textShowcaseRow }: TextShowcaseRowProps) => {
-
   return (
     <section className="block mx-auto max-w-theme-wide desktop:px-52">
       <div className="flex flex-col lg:h-lvh items-center justify-center">
-      <InterTitle interTitle={data.pages.home.textShowcaseRowTitle} hLvh={false} mt={false} />
+        <InterTitle interTitle={textShowcaseRow.interTitle} />
         <div className="relative flex flex-wrap justify-center items-start gap-14 mt-12 mb-24 lg:mb-0">
-          {textShowcaseRow.map((showcase, index) => (
+          {textShowcaseRow.columns.map((showcase, index) => (
             <Link
               key={index}
               href=""
@@ -34,7 +42,9 @@ export const TextShowcaseRow = ({ textShowcaseRow }: TextShowcaseRowProps) => {
                     <span className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] block bg-primary group-hover:bg-foreground transition rounded-full w-6 h-6 "></span>
                     <ArrowRightIcon className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] h-4 w-4 text-primary-foreground transition group-hover:card-foreground" />
                   </span>
-                  <span className="relative top-[1px] ml-6 group-hover:text-foreground transition">{showcase.link}</span>
+                  <span className="relative top-[1px] ml-6 group-hover:text-foreground transition">
+                    {showcase.link}
+                  </span>
                 </span>
               </div>
             </Link>

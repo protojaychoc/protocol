@@ -14,13 +14,12 @@ const BodyClassManager = () => {
       document.body.classList.remove(`overflow-y-hidden`);
     }
 
-    // Nettoie l'effet
     return () => {
       document.body.classList.remove(`overflow-y-hidden`);
     };
   }, [activeMenuDesktop, activeMenuMobile]);
 
-  return null; // Pas besoin de rendre quoi que ce soit
+  return null;
 };
 
 export default BodyClassManager;

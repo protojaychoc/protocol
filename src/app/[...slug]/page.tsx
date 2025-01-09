@@ -12,6 +12,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
   const props = await getPageDatas(slug);
 
+  console.log(props);
+
   if (props === null || props === undefined) {
     notFound();
   }

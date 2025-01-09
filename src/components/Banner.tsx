@@ -13,7 +13,6 @@ interface BannerProps {
 }
 
 export const Banner = ({ banner }: BannerProps) => {
-  console.log("test");
   return (
     <section className="block mx-auto max-w-theme-wide mt-40 mb:20 lg:mt-40 lg:mb-40">
       <div className="relative my-10">

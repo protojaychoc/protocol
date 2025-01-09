@@ -11,56 +11,47 @@ import { TextShowcaseCol } from "../components/TextShowcaseCol";
 import { FeatureShowcase } from "../components/FeatureShowcase";
 import { CardContact } from "../components/CardContact";
 import Head from "next/head";
-import { getAllPosts } from "@/lib/posts";
 import { getHomePage } from "@/lib/pagesRequest";
 import { BlockRenderer } from "@/components/BlockRenderer/BlockRenderer";
 
 export default async function Home() {
-  const allPosts = await getAllPosts();
   const props = await getHomePage();
-
-  // console.log(allPosts);
-  // console.log(props);
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Protocol</title>
-      </Head>
-      <section>
+      </Head> */}
+      {/* <section>
         <BlockRenderer blocks={props} />
-        <ul>
-          {allPosts.map((post) => (
-            <li key={post.slug}>{post.title}</li>
-          ))}
-        </ul>
-      </section>
-      <HeroHome hero={data.pages.support.hero} img={homeDesktop} />
+      </section> */}
+      {/* <HeroHome hero={data.pages.support.hero} img={homeDesktop} /> */}
       <div className="px-3 lg:px-0">
-        <InterTitle
+        <BlockRenderer blocks={props} />
+        {/* <InterTitle
           interTitle={data.pages.home.interTitle}
           hLvh={false}
           mt={true}
-        />
-        <BannerShowcase
+        /> */}
+        {/* <BannerShowcase
           bannerShowcase={data.pages.home.bannerShowcase}
           img={bannerShowcaseImage}
-        />
-        <TextShowcaseRow textShowcaseRow={data.pages.home.textShowcaseRow} />
-        <InterTitle
+        /> */}
+        {/* <TextShowcaseRow textShowcaseRow={data.pages.home.textShowcaseRow} /> */}
+        {/* <InterTitle
           interTitle={data.pages.home.featureShowcaseTitle}
           hLvh={false}
           mt={false}
-        />
-        <FeatureShowcase featureShowcase={data.pages.home.featureShowcase} />
-        <InterTitle
+        /> */}
+        {/* <FeatureShowcase featureShowcase={data.pages.home.featureShowcase} /> */}
+        {/* <InterTitle
           interTitle={data.pages.home.bannerTitle}
           hLvh={false}
           mt={true}
-        />
-        <Banner banner={data.pages.home.banner} img={allInclusive} />
-        <TextShowcaseCol textShowcaseCol={data.pages.home.textShowcaseCol} />
-        <CardContact cardContact={data.pages.home.cardContact} />
+        /> */}
+        {/* <Banner banner={data.pages.home.banner} img={allInclusive} /> */}
+        {/* <TextShowcaseCol textShowcaseCol={data.pages.home.textShowcaseCol} /> */}
+        {/* <CardContact cardContact={data.pages.home.cardContact} /> */}
       </div>
     </>
   );
